@@ -6,7 +6,7 @@ $(NAME) :
 	make all
 
 all:
-	docker compose -f $(SRC) up
+	docker compose -f $(SRC) up -d
 
 clean:
 	docker compose -f $(SRC) down
