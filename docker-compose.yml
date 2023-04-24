@@ -2,9 +2,8 @@ version: "3.9"
 
 services:
   nginx:
-    image: nginx
-    container_name: nginx_test
+    container_name: nginx
     build: ./requirements/nginx
-    # hostname: ${DOMAIN_NAME}
+    hostname: ${DOMAIN_NAME}
     ports:
       - '443:443'
