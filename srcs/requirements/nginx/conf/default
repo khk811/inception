@@ -2,6 +2,8 @@ server {
 	listen 443 default_server;
 	listen [::]:443 default_server;
 
+	server_name $DOMAIN_NAME
+
 	root /usr/share/nginx/html;
 	index index.html index.htm;
 

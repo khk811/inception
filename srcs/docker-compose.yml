@@ -2,8 +2,13 @@ version: "3.9"
 
 services:
   nginx:
+    env_file: ./requirements/.env
     container_name: nginx
     build: ./requirements/nginx
-    hostname: ${DOMAIN_NAME}
     ports:
       - '443:443'
+#     networks:
+#       - ;
+
+# networks:
+
