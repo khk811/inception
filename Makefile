@@ -14,8 +14,8 @@ clean:
 	docker compose -f $(SRC) down
 
 fclean:
-	docker stop $(ALL_CONTAINER)
-	docker rm $(ALL_CONTAINER)
-	docker rmi $(ALL_IMAGES)
+	$(ALL_CONTAINER) | xargs docker stop
+	$(ALL_CONTAINER) | xargs docker rm
+	$(ALL_IMAGES) | xargs docker rmi
 
 .PHONY: all, clean, fclean
