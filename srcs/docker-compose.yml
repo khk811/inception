@@ -2,13 +2,13 @@ version: "3.9"
 
 services:
   nginx:
-    env_file: ./requirements/.env
+    env_file: .env
     container_name: nginx
     build: ./requirements/nginx
     ports:
       - '443:443'
 #     networks:
-#       - ;
+#       -
 
 # networks:
 
