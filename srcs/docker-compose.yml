@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   nginx:
-    image: nginx
+    container_name: nginx
     env_file: .env
     build: ./requirements/nginx
     ports:
