@@ -1,0 +1,8 @@
+version: "3.9"
+
+services:
+  nginx:
+    build: ./nginx
+    # hostname: ${DOMAIN_NAME}
+    ports:
+      - '443:443'
