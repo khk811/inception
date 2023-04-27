@@ -13,13 +13,5 @@ services:
     env_file: .env
     build: ./requirements/wordpress
     volumes:
-      - wp_volume: /home/hyunkkim/data
-
-
-volumes:
-  wp_volume:
-    driver:
-    driver_opts:
-
-
+      - /home/hyunkkim/data: /var/www/html
 
