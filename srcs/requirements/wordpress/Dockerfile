@@ -17,9 +17,7 @@ RUN chmod +x wp-cli.phar && \
 
 # download wordpress
 RUN wp core download --locale=ko_KR --allow-root
-
-# db를 안만들었기 때문에 일단 임시로 만들어서 씀?
-#RUN wp config create --dbname=test_temp --dbuser=hyunkkim --allow-root
+RUN wp config create --dbname=test_temp --dbuser=hyunkkim --skip-check --allow-root
 
 # install wordpress
 #RUN wp core install --url=${DOMAIN_NAME} --title=Example --admin_user=hyunkkim --admin_password=1234 --admin_email=info@example.com --allow-root
