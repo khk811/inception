@@ -14,13 +14,23 @@ services:
     build: ./requirements/nginx
     volumes:
       - /home/hyunkkim/data/mariadb:/var/lib/mysql
-
+    # ports:
+    #   - '3306:3306'
+    networks:
+      - db_network
 
   wordpress:
+    depends_on:
+      - mariadb
     container_name: wordpress
     env_file: .env
     build: ./requirements/wordpress
     volumes:
       - /home/hyunkkim/data/wordpress:/var/www/html
     working_dir: /var/www/html
+    networks:
+      - db_network
 
+networks:
+  db_network:
+    driver: bridge
