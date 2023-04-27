@@ -8,12 +8,22 @@ RUN apt-get -y update && \
 # wp-cli 설치 (w/curl)
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 
+# phar 파일이 제대로 있는지 확인?
+RUN php wp-cli.phar --info
+
+# phar 파일 권한 변경 및 위치변경
+RUN chmod +x wp-cli.phar && \
+	mv wp-cli.phar /usr/local/bin/wp
+
 # download wordpress
-RUN wp core download --locale=ko_KR
+RUN wp core download --locale=ko_KR --allow-root
+
+# db를 안만들었기 때문에 일단 임시로 만들어서 씀?
+#RUN wp config create --dbname=test_temp --dbuser=hyunkkim --allow-root
 
 # install wordpress
-RUN wp core install --url=${DOMAIN_NAME} --title=Example --admin_user=hyunkkim --admin_password=1234 --admin_email=info@example.com
+#RUN wp core install --url=${DOMAIN_NAME} --title=Example --admin_user=hyunkkim --admin_password=1234 --admin_email=info@example.com --allow-root
 
 # open wp-admin in browser
-CMD ["wp", "admin"]
+#CMD ["sudo", "-u", "hyunkkim", "-i", "wp", "admin"]
 

@@ -13,5 +13,6 @@ services:
     env_file: .env
     build: ./requirements/wordpress
     volumes:
-      - /home/hyunkkim/data: /var/www/html
+      - /home/hyunkkim/data:/var/www/html
+    working_dir: /var/www/html
 
