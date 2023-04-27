@@ -3,7 +3,7 @@ FROM debian:bullseye
 
 # php-fpm, php-mysql 설치
 RUN apt-get -y update && \
-	apt-get -y install php-fpm php-mysql curl
+	apt-get -y install php-fpm php-mysql curl mariadb-client
 
 # wp-cli 설치 (w/curl)
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar

@@ -14,8 +14,8 @@ services:
     build: ./requirements/nginx
     volumes:
       - /home/hyunkkim/data/mariadb:/var/lib/mysql
-    # ports:
-    #   - '3306:3306'
+    ports:
+      - '3306:3306'
     networks:
       - db_network
 
