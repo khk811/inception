@@ -16,14 +16,20 @@ RUN chmod +x wp-cli.phar && \
 	mv wp-cli.phar /usr/local/bin/wp
 
 # download wordpress
-RUN wp core download --locale=ko_KR --allow-root
+# RUN wp core download --locale=ko_KR --allow-root
 
 # wp-config.php 생성
-RUN wp config create --dbname=wp_hyunkkim --dbuser=hyunkkim --dbpass=1234 --allow-root
+# RUN wp config create --dbname=wp_hyunkkim --dbuser=hyunkkim --dbpass=1234 --allow-root
 
 # install wordpress
-RUN wp core install --url=${DOMAIN_NAME} --title=Example --admin_user=hyunkkim --admin_password=1234 --admin_email=info@example.com --allow-root
+# RUN wp core install --url=${DOMAIN_NAME} --title=Example --admin_user=hyunkkim --admin_password=1234 --admin_email=info@example.com --allow-root
+
+# copy script file (상대경로 기준은 dockerfile 기준)
+COPY ./tools/wp_script.sh /var/www/html/
+RUN chmod +x /var/www/html/wp_script.sh
 
 # open wp-admin in browser
-CMD ["sudo", "-u", "hyunkkim", "-i", "wp", "admin"]
+# CMD ["sudo", "-u", "hyunkkim", "-i", "wp", "admin"]
+CMD ["sh", "wp_script.sh"]
+
 
