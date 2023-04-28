@@ -18,4 +18,6 @@ fclean:
 	$(ALL_CONTAINER) | xargs docker rm
 	$(ALL_IMAGES) | xargs docker rmi
 
-.PHONY: all, clean, fclean
+re: fclean
+	make all
+.PHONY: all, clean, fclean, re
