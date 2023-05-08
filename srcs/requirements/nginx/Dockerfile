@@ -5,7 +5,8 @@ FROM debian:bullseye
 RUN apt-get -y update && apt-get -y install nginx
 
 # config file? - copy config file
-COPY ./conf/default /etc/nginx/sites-available/default
+# COPY ./conf/default /etc/nginx/sites-available/default
+COPY ./conf/nginx.conf /etc/nginx/nginx.conf
 
 # 443 port 열기
 EXPOSE 443/tcp
