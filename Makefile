@@ -17,6 +17,7 @@ fclean:
 	$(ALL_CONTAINER) | xargs docker stop
 	$(ALL_CONTAINER) | xargs docker rm
 	$(ALL_IMAGES) | xargs docker rmi
+	rm -rf ./volumes/mariadb ./volumes/wordpress
 
 re: fclean
 	make all
