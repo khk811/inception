@@ -3,6 +3,7 @@ version: "3.9"
 services:
   nginx:
     container_name: nginx
+    restart: always
     env_file: .env
     build: ./requirements/nginx
     ports:
@@ -12,26 +13,30 @@ services:
 
   mariadb:
     container_name: mariadb
+    restart: always
     env_file: .env
     build: ./requirements/mariadb
     volumes:
-      # - (컨테이너 내부 디렉토리):(연결시킬 호스트 디렉토리)
-      - /var/lib/mysql:/home/hyunkkim/data/mariadb
       # - /var/lib/mysql:/Users/hyunkkim/inception/volumes/mariadb
+      - /Users/hyunkkim/inception/volumes/mariadb:/var/lib/mysql
+      # - (컨테이너 내부 디렉토리):(연결시킬 호스트 디렉토리)
+      # - /var/lib/mysql:/home/hyunkkim/data/mariadb
     expose:
       - 3306
     networks:
       - db_network
 
   wordpress:
+    container_name: wordpress
+    restart: always
     depends_on:
       - mariadb
-    container_name: wordpress
     env_file: .env
     build: ./requirements/wordpress
     volumes:
-      - /var/www/html:/home/hyunkkim/data/wordpress
-      # - /var/www/html:/Users/hyunkkim/inception/volumes/mariadb
+      # - /var/www/html:/Users/hyunkkim/inception/volumes/wordpress
+      - /Users/hyunkkim/inception/volumes/wordpress:/var/www/html
+      # - /var/www/html:/home/hyunkkim/data/wordpress
     working_dir: /var/www/html
     expose:
       - 9000
