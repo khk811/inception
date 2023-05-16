@@ -7,10 +7,7 @@ services:
     env_file: .env
     build: ./requirements/mariadb
     volumes:
-      # - /var/lib/mysql:/Users/hyunkkim/inception/volumes/mariadb
-      - /Users/hyunkkim/inception/volumes/mariadb:/var/lib/mysql
-      # - (컨테이너 내부 디렉토리):(연결시킬 호스트 디렉토리)
-      # - /var/lib/mysql:/home/hyunkkim/data/mariadb
+      - db_volume:/var/lib/mysql
     expose:
       - 3306
     networks:
@@ -25,9 +22,6 @@ services:
     build: ./requirements/wordpress
     volumes:
       - wp_volume:/var/www/html
-      # - /var/www/html:/Users/hyunkkim/inception/volumes/wordpress
-      # - /Users/hyunkkim/inception/volumes/wordpress:/var/www/html
-      # - /var/www/html:/home/hyunkkim/data/wordpress
     working_dir: /var/www/html
     expose:
       - 9000
@@ -53,6 +47,13 @@ volumes:
       o: bind
       type: none
       device: /Users/hyunkkim/inception/volumes/wordpress
+
+  db_volume:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /Users/hyunkkim/inception/volumes/mariadb
 
 networks:
   db_network:
