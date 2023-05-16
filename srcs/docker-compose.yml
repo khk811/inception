@@ -1,19 +1,9 @@
 version: "3.9"
 
 services:
-  nginx:
-    container_name: nginx
-    restart: always
-    env_file: .env
-    build: ./requirements/nginx
-    ports:
-      - '443:443'
-    networks:
-      - db_network
-
   mariadb:
     container_name: mariadb
-    restart: always
+    # restart: always
     env_file: .env
     build: ./requirements/mariadb
     volumes:
@@ -28,20 +18,41 @@ services:
 
   wordpress:
     container_name: wordpress
-    restart: always
+    # restart: always
     depends_on:
       - mariadb
     env_file: .env
     build: ./requirements/wordpress
     volumes:
+      - wp_volume:/var/www/html
       # - /var/www/html:/Users/hyunkkim/inception/volumes/wordpress
-      - /Users/hyunkkim/inception/volumes/wordpress:/var/www/html
+      # - /Users/hyunkkim/inception/volumes/wordpress:/var/www/html
       # - /var/www/html:/home/hyunkkim/data/wordpress
     working_dir: /var/www/html
     expose:
       - 9000
     networks:
       - db_network
+
+  nginx:
+    container_name: nginx
+    # restart: always
+    env_file: .env
+    build: ./requirements/nginx
+    volumes:
+      - wp_volume:/var/www/html
+    ports:
+      - '443:443'
+    networks:
+      - db_network
+
+volumes:
+  wp_volume:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /Users/hyunkkim/inception/volumes/wordpress
 
 networks:
   db_network:
