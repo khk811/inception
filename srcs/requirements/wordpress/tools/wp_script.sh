@@ -4,19 +4,23 @@
 
 cd /var/www/html
 
+chown -R www-data:www-data /var/www
+
 if [ ! -e index.php ]
 then
 	echo "Download wordpress\n";
-	wp core download --locale=ko_KR --allow-root
+	sudo -u www-data sh -c "
+	wp core download --locale=ko_KR"
 fi
 
 if [ -e wp-config-sample.php -a ! -e wp-config.php ]
 then
+	sudo -u www-data sh -c "
 	cp wp-config-sample.php wp-config.php && \
-	wp config set DB_NAME ${MYSQL_DATABASE} --allow-root && \
-	wp config set DB_USER ${MYSQL_USER} --allow-root && \
-	wp config set DB_HOST ${WORDPRESS_DB_HOST} --allow-root && \
-	wp config set DB_PASSWORD ${MYSQL_PASSWORD} --allow-root
+	wp config set DB_NAME ${MYSQL_DATABASE} && \
+	wp config set DB_USER ${MYSQL_USER} && \
+	wp config set DB_HOST ${WORDPRESS_DB_HOST} && \
+	wp config set DB_PASSWORD ${MYSQL_PASSWORD}"
 fi
 
 # 2023-05-16 18:30 이 윗 줄 까지 됨
@@ -25,16 +29,19 @@ fi
 if [ -e wp-config.php ]
 then
 	echo 'install wordpress\n' && \
+	sudo -u www-data sh -c "
 	wp core install \
-	--url=${DOMAIN_NAME} \
+	--url=localhost \
 	--title=Example \
-	--admin_user=hyunkkim \
+	--admin_user=root \
 	--admin_password=1234 \
-	--admin_email=hyunkkim@student.42seoul.kr --allow-root
+	--admin_email=hyunkkim@student.42seoul.kr"
 fi
 
 # exec /bin/sh
 
 # open wp-admin in browser
-echo "open wordpress admin in browser\n";
-wp admin --allow-root
+# echo "open wordpress admin in browser\n";
+# wp admin --allow-root
+
+exec /usr/sbin/php-fpm7.4 -F
