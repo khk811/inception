@@ -2,7 +2,7 @@
 
 
 if [ ! -e /var/lib/mysql/.is_root_reset ]; then
-	echo "------[ root_reset ] START MARIADB----------\n"
+	echo "------[ root_reset ] DB START----------\n"
 	service mariadb start
 	echo "------[ root_reset ] BEFORE CHMOD----------\n"
 	chmod -R 777 /var/lib/mysql
@@ -25,18 +25,17 @@ if [ ! -e /var/lib/mysql/.is_root_reset ]; then
 	touch /var/lib/mysql/.is_root_reset
 	echo "-------[root reset] SHUTDOWN---------\n"
 	mysqladmin -uroot -p1234 shutdown
+else
+	if [ ! -e /run/mysqld ]; then
+		mkdir /run/mysqld && chmod 777 /run/mysqld && chown -R mysql:mysql /run/mysqld
+	fi
 fi
 
-echo "------START MARIADB----------\n"
-service mariadb start
-echo "------BEFORE CHMOD----------\n"
-chmod -R 777 /var/lib/mysql
-echo "------AFTER CHMOD----------\n"
-echo "------BEFORE CHOWN----------\n"
-chown -R mysql:mysql /var/lib/mysql
-echo "------AFTER CHOWN----------\n"
-echo "-------SHUTDOWN---------\n"
-mysqladmin -uroot -p1234 shutdown
+# echo "------START MARIADB----------\n"
+# service mariadb start
+
+# echo "-------SHUTDOWN---------\n"
+# mysqladmin -uroot -p1234 shutdown
 
 echo "------MYSQLD START----------\n"
 mysqld --user=mysql
