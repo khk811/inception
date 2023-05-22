@@ -4,21 +4,21 @@ SRC= $(addprefix $(SRC_DIR), docker-compose.yml)
 ALL_CONTAINER=docker ps -aq
 ALL_IMAGES=docker images -aq
 
-$(NAME) :
-	make all
 
-all:
+$(NAME) :
+	make up
+
+up:
 	docker compose -f $(SRC) up
 
-clean:
+down:
 	docker compose -f $(SRC) down
 
-fclean:
+clean:
 	$(ALL_CONTAINER) | xargs docker stop
 	$(ALL_CONTAINER) | xargs docker rm
 	$(ALL_IMAGES) | xargs docker rmi
-	rm -rf ./volumes/mariadb ./volumes/wordpress
+	rm -rf ./volumes/mariadb/* ./volumes/wordpress/*
+	rm -rf ./volumes/mariadb/.is_root_reset ./volumes/wordpress/.is_wp_installed
 
-re: fclean
-	make all
-.PHONY: all, clean, fclean, re
+.PHONY: up, down, clean
