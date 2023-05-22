@@ -2,6 +2,7 @@
 
 
 if [ ! -e /var/lib/mysql/.is_root_reset ]; then
+	echo "------[ root_reset ] START MARIADB----------\n"
 	service mariadb start
 	echo "------[ root_reset ] BEFORE CHMOD----------\n"
 	chmod -R 777 /var/lib/mysql
@@ -26,6 +27,8 @@ if [ ! -e /var/lib/mysql/.is_root_reset ]; then
 	mysqladmin -uroot -p1234 shutdown
 fi
 
+	echo "------START MARIADB----------\n"
+service mariadb start
 echo "------BEFORE CHMOD----------\n"
 chmod -R 777 /var/lib/mysql
 echo "------AFTER CHMOD----------\n"
