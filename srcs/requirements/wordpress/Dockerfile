@@ -5,9 +5,10 @@ FROM debian:bullseye
 RUN apt-get -y update && \
 	apt-get -y install php-fpm \
 			php-mysql \
+			php-cli \
+			mariadb-client \
 			curl \
-			sudo \
-			sendmail
+			sudo
 
 # wp-cli 설치 (w/curl)
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
