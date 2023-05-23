@@ -31,6 +31,9 @@ services:
   nginx:
     container_name: nginx
     restart: always
+    depends_on:
+      - mariadb
+      - wordpress
     env_file: .env
     build: ./requirements/nginx
     volumes:
