@@ -19,11 +19,11 @@ if [ ! -e /var/www/html/.is_wp_installed ]; then
 	echo 'install wordpress\n' && \
 	sudo -u www-data sh -c "
 	wp core install \
-	--url=localhost \
-	--title=Example \
-	--admin_user=root \
-	--admin_password=1234 \
-	--admin_email=hyunkkim@student.42seoul.kr"
+	--url=${WORDPRESS_WEBSITE_URL} \
+	--title=${WORDPRESS_WEBSITE_TITLE} \
+	--admin_user=${WORDPRESS_ADMIN_USER} \
+	--admin_password=${WORDPRESS_ADMIN_PASSWORD} \
+	--admin_email=${WORDPRESS_ADMIN_EMAIL}"
 
 	touch /var/www/html/.is_wp_installed
 fi
