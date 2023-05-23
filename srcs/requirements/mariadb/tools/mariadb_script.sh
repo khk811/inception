@@ -3,7 +3,7 @@
 
 if [ ! -e /var/lib/mysql/.is_root_reset ]; then
 	echo "------[ root_reset ] DB START----------\n"
-	service mariadb start
+	service mariadb start 2> /dev/null
 	echo "------[ root_reset ] BEFORE CHMOD----------\n"
 	chmod -R 777 /var/lib/mysql
 	echo "------[ root_reset ] AFTER CHMOD----------\n"
@@ -23,8 +23,9 @@ if [ ! -e /var/lib/mysql/.is_root_reset ]; then
 	mysql -uroot -e "ALTER USER root@localhost IDENTIFIED BY '1234'; FLUSH PRIVILEGES;"
 	echo "-------MAKE .is_root_reset---------\n"
 	touch /var/lib/mysql/.is_root_reset
-	echo "-------[root reset] SHUTDOWN---------\n"
+	echo "-------[root reset] SHUTDOWN ---------\n"
 	mysqladmin -uroot -p1234 shutdown
+	echo "-------[root reset] SHUTDOWN COMPLETE---------\n"
 else
 	if [ ! -e /run/mysqld ]; then
 		mkdir /run/mysqld && chmod 777 /run/mysqld && chown -R mysql:mysql /run/mysqld
