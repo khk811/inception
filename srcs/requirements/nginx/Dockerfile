@@ -20,6 +20,6 @@ COPY ./conf/default /etc/nginx/conf.d/default.conf
 # 443 port 열기
 EXPOSE 443/tcp
 
-# 실행
+# nginx 실행
 CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
 

@@ -7,7 +7,7 @@ RUN apt-get -y update && \
 			php-mysql \
 			curl \
 			sudo \
-			mariadb-client
+			sendmail
 
 # wp-cli 설치 (w/curl)
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
@@ -21,8 +21,9 @@ RUN chmod +x wp-cli.phar && \
 COPY --chmod=777 /tools/wp_script.sh /tmp/wp_script.sh
 COPY --chmod=777 /conf/www.conf /etc/php/7.4/fpm/pool.d/www.conf
 
+# 9000 port 열기
 EXPOSE 9000
 
-# open wp-admin in browser
+# wp_script.sh 실행
 CMD ["/bin/sh", "/tmp/wp_script.sh"]
 
