@@ -10,18 +10,12 @@ if [ ! -e /var/www/html/.wp_installed ]; then
 	wp core download --locale=ko_KR"
 
 	echo "[CONFIGURE WORDPRESS]\n";
-	sudo -u www-data sh -c "wp config create \
+	sudo -u www-data sh -c "
+	wp config create \
 	--dbname=${MYSQL_DATABASE} \
 	--dbuser=${MYSQL_USER} \
 	--dbpass=${MYSQL_PASSWORD} \
-	--dbhost=root"
-
-	# sudo -u www-data sh -c "
-	# cp wp-config-sample.php wp-config.php && \
-	# wp config set DB_NAME ${MYSQL_DATABASE} && \
-	# wp config set DB_USER ${MYSQL_USER} && \
-	# wp config set DB_HOST ${WORDPRESS_DB_HOST} && \
-	# wp config set DB_PASSWORD ${MYSQL_PASSWORD}"
+	--dbhost=${WORDPRESS_DB_HOST}"
 
 	echo "[INSTALL WORDPRESS]\n";
 	sudo -u www-data sh -c "
