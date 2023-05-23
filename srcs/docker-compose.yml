@@ -32,7 +32,7 @@ services:
 
   nginx:
     container_name: nginx
-    # restart: always
+    restart: always
     env_file: .env
     build: ./requirements/nginx
     volumes:
