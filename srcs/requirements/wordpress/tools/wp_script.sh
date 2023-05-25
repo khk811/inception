@@ -15,7 +15,12 @@ if [ ! -e /var/www/html/.wp_installed ]; then
 	--dbname=${MYSQL_DATABASE} \
 	--dbuser=${MYSQL_USER} \
 	--dbpass=${MYSQL_PASSWORD} \
-	--dbhost=${WORDPRESS_DB_HOST}"
+	--dbhost=${WORDPRESS_DB_HOST}" \
+
+	echo "[REDIS CONFIGURATION FOR WORDPRESS]";
+	sudo -u www-data sh -c "
+	wp config set WP_REDIS_HOST ${REDIS_HOST} && \
+	wp config set WP_REDIS_PORT ${REDIS_PORT}"
 
 	echo "[INSTALL WORDPRESS]\n";
 	sudo -u www-data sh -c "
