@@ -1,0 +1,79 @@
+# Bonus Docker compose file
+
+version: "3.8"
+
+services:
+  mariadb:
+    container_name: mariadb
+    restart: always
+    env_file: .env_bonus
+    build: ../mariadb
+    volumes:
+      - db_volume:/var/lib/mysql
+    expose:
+      - 3306
+    networks:
+      - db_network
+
+  redis:
+    container_name: redis
+    restart: always
+    env_file: .env_bonus
+    build: ./redis
+    expose:
+      - 6379
+    networks:
+      - db_network
+    volumes:
+      - wp_volume:/data
+
+  wordpress:
+    container_name: wordpress
+    restart: always
+    depends_on:
+      - mariadb
+    env_file: .env_bonus
+    build: ../wordpress
+    volumes:
+      - wp_volume:/var/www/html
+    working_dir: /var/www/html
+    expose:
+      - 9000
+    networks:
+      - db_network
+
+  nginx:
+    container_name: nginx
+    restart: always
+    depends_on:
+      - mariadb
+      - wordpress
+    env_file: .env_bonus
+    build: ../nginx
+    volumes:
+      - wp_volume:/var/www/html
+    ports:
+      - '443:443'
+    networks:
+      - db_network
+
+volumes:
+  wp_volume:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /Users/hyunkkim/inception/volumes/wordpress
+      # device: /home/hyunkkim/data/wordpress
+
+  db_volume:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /Users/hyunkkim/inception/volumes/mariadb
+      # device: /home/hyunkkim/data/mariadb
+
+networks:
+  db_network:
+    driver: bridge
