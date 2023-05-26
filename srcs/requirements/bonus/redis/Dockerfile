@@ -12,12 +12,9 @@ RUN apt-get -y update && \
 RUN curl -fsSL https://packages.redis.io/gpg | sudo gpg --dearmor -o /usr/share/keyrings/redis-archive-keyring.gpg
 RUN echo "deb [signed-by=/usr/share/keyrings/redis-archive-keyring.gpg] https://packages.redis.io/deb $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/redis.list
 
-# redis.conf 복사
-COPY --chmod=777 /conf/redis.conf /etc/redis/redis.conf
-
 # redis 설치
 RUN apt-get -y install redis
 
 EXPOSE 6379
 
-CMD ["redis-server"]
+CMD ["/usr/bin/redis-server", "--protected-mode", "no"]

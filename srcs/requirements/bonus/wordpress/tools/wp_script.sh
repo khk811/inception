@@ -20,7 +20,6 @@ if [ ! -e /var/www/html/.wp_installed ]; then
 	echo "\n[REDIS CONFIGURATION FOR WORDPRESS]";
 	sudo -u www-data sh -c "
 	wp config set WP_REDIS_HOST ${REDIS_HOST} && \
-	wp config set WP_REDIS_DATABASE 0 && \
 	wp config set WP_REDIS_PORT ${REDIS_PORT}"
 
 	echo "\n[INSTALL WORDPRESS]\n";
