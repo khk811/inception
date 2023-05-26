@@ -9,7 +9,7 @@ if [ ! -e /var/www/html/.wp_installed ]; then
 	sudo -u www-data sh -c "
 	wp core download --locale=ko_KR"
 
-	echo "[CONFIGURE WORDPRESS]\n";
+	echo "\n[CONFIGURE WORDPRESS]\n";
 	sudo -u www-data sh -c "
 	wp config create \
 	--dbname=${MYSQL_DATABASE} \
@@ -17,12 +17,13 @@ if [ ! -e /var/www/html/.wp_installed ]; then
 	--dbpass=${MYSQL_PASSWORD} \
 	--dbhost=${WORDPRESS_DB_HOST}" \
 
-	echo "[REDIS CONFIGURATION FOR WORDPRESS]";
+	echo "\n[REDIS CONFIGURATION FOR WORDPRESS]";
 	sudo -u www-data sh -c "
 	wp config set WP_REDIS_HOST ${REDIS_HOST} && \
+	wp config set WP_REDIS_DATABASE 0 && \
 	wp config set WP_REDIS_PORT ${REDIS_PORT}"
 
-	echo "[INSTALL WORDPRESS]\n";
+	echo "\n[INSTALL WORDPRESS]\n";
 	sudo -u www-data sh -c "
 	wp core install --skip-email \
 	--url=${WORDPRESS_WEBSITE_URL} \
@@ -31,7 +32,11 @@ if [ ! -e /var/www/html/.wp_installed ]; then
 	--admin_password=${WORDPRESS_ADMIN_PASSWORD} \
 	--admin_email=${WORDPRESS_ADMIN_EMAIL}"
 
-	echo "[CREATE .wp_installed FILE]\n";
+	echo "\n[INSTALL REDIS PLUGIN IN WORDPRESS]\n";
+	sudo -u www-data sh -c "
+	wp plugin install redis-cache --activate"
+
+	echo "\n[CREATE .wp_installed FILE]\n";
 	touch /var/www/html/.wp_installed
 fi
 
