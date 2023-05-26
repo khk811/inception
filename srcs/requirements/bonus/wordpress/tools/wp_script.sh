@@ -33,7 +33,8 @@ if [ ! -e /var/www/html/.wp_installed ]; then
 
 	echo "\n[INSTALL REDIS PLUGIN IN WORDPRESS]\n";
 	sudo -u www-data sh -c "
-	wp plugin install redis-cache --activate"
+	wp plugin install redis-cache --activate && \
+	wp redis enable"
 
 	echo "\n[CREATE .wp_installed FILE]\n";
 	touch /var/www/html/.wp_installed
