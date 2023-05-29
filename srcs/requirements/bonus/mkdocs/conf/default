@@ -1,0 +1,19 @@
+server {
+	listen 8000;
+	listen [::]:8000;
+#	listen 443 ssl;
+#	listen [::]:443 ssl;
+#	ssl_protocols TLSv1.2 TLSv1.3;
+#	ssl_certificate __443+1.pem;
+#	ssl_certificate_key __443+1-key.pem;
+
+	server_name localhost;
+
+	root /var/www/html/inception;
+	index index.html index.htm index.php;
+
+	location / {
+		autoindex on;
+		try_files $uri $uri/ = 404;
+	}
+}

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-cd ../ 
+cd ../
 
 pwd | xargs echo
 
@@ -16,4 +16,4 @@ cd inception
 
 mkdocs build
 
-mkdocs serve --dev-addr=0.0.0.0:8000
+/usr/sbin/nginx -g daemon off

@@ -1,3 +1,7 @@
+upstream mkdocs-container {
+	server mkdocs:8000;
+}
+
 server {
 	listen 443 ssl;
 	listen [::]:443 ssl;
@@ -14,7 +18,7 @@ server {
 		autoindex on;
 		try_files $uri $uri/ = 404;
 	}
-	
+
 	location ~ \.php$ {
 		try_files $uri =404;
 		fastcgi_split_path_info ^(.+\.php)(/.+)$;
@@ -25,4 +29,12 @@ server {
 		fastcgi_param PATH_INFO $fastcgi_path_info;
 	}
 
+	location /inception/ {
+		proxy_pass http://mkdocs-container;
+		proxy_redirect off;
+		proxy_set_header Host $host;
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-forwarded-For $proxy_x_forwarded_for;
+		proxy_set_header X-Forwarded-Host $server_name;
+	}
 }
