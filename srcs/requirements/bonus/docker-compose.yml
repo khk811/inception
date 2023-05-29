@@ -40,6 +40,18 @@ services:
     volumes:
       - wp_volume:/home/vsftpd
 
+  adminer:
+    container_name: adminer
+    restart: always
+    build: ./adminer
+    depends_on:
+      - mariadb
+    ports:
+      - '8080:8080'
+    networks:
+      - db_network
+    volumes:
+      - wp_volume:/var/www/html
 
   wordpress:
     container_name: wordpress
