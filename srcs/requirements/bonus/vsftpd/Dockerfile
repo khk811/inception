@@ -9,7 +9,7 @@ RUN apt-get -y update && \
 # RUN groupmod -g 1000 ftp
 
 COPY --chmod=777 /conf/custom_vsftpd.conf /etc/vsftpd.conf
-COPY --chmod=777 /tool/ftp_script.sh /tmp/ftp_script.sh
+COPY --chmod=777 /tools/ftp_script.sh /tmp/ftp_script.sh
 
 # RUN mkdir -p /home/vsftpd && chown -R ftp:ftp /home/vsftpd/
 

@@ -11,7 +11,8 @@ RUN apt-get -y update && \
 RUN mkdir -p /run/php
 
 COPY --chmod=777 /conf/www.conf /etc/php/7.4/fpm/pool.d/www.conf
+COPY --chmod=777 /tools/adminer_script.sh /tmp/adminer_script.sh
 
 EXPOSE 8080
 
-CMD ["/usr/sbin/php-fpm7.4", "-F"]
+CMD ["/bin/bash", "/tmp/adminer_script.sh"]
