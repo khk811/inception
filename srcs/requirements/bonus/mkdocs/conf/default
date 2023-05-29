@@ -7,9 +7,9 @@ server {
 #	ssl_certificate __443+1.pem;
 #	ssl_certificate_key __443+1-key.pem;
 
-	server_name localhost;
+	# server_name localhost;
 
-	root /var/www/html/inception;
+	root /var/www/html/inception/site;
 	index index.html index.htm index.php;
 
 	location / {

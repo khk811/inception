@@ -30,11 +30,6 @@ server {
 	}
 
 	location /inception/ {
-		proxy_pass http://mkdocs-container;
-		proxy_redirect off;
-		proxy_set_header Host $host;
-		proxy_set_header X-Real-IP $remote_addr;
-		proxy_set_header X-forwarded-For $proxy_x_forwarded_for;
-		proxy_set_header X-Forwarded-Host $server_name;
+		proxy_pass http://mkdocs-container/;
 	}
 }

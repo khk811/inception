@@ -18,6 +18,8 @@ RUN pip3 install mkdocs-material
 
 # RUN /bin/sh /tmp/mkcert_script.sh
 
+# WORKDIR /var/www/html/inception
+
 EXPOSE 8000
 # EXPOSE 443/tcp
 
