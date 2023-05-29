@@ -8,7 +8,8 @@ RUN apt-get -y update && \
 						wget
 
 
-RUN wget "http://www.adminer.org/latest.php" -O /var/www/html/adminer.php
+RUN mkdir -p /var/www/html && \
+	wget "http://www.adminer.org/latest.php" -O /var/www/html/adminer.php
 
 RUN chown -R www-data:www-data /var/www/html/adminer.php && \
  	chmod 755 /var/www/html/adminer.php && \
