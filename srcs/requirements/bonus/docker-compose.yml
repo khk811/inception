@@ -70,6 +70,20 @@ services:
     networks:
       - db_network
 
+  mkdocs:
+    container_name: mkdocs
+    restart: always
+    depends_on:
+      - mariadb
+      - wordpress
+    expose:
+      - 4242
+    networks:
+      - db_network
+    volumes:
+      - wp_volume:/var/www/html
+    working_dir: /var/www/html/inception
+
   nginx:
     container_name: nginx
     restart: always
