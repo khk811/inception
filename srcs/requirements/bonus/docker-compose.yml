@@ -73,11 +73,12 @@ services:
   mkdocs:
     container_name: mkdocs
     restart: always
+    build: ./mkdocs
     depends_on:
       - mariadb
       - wordpress
-    expose:
-      - 4242
+    ports:
+      - '8000:8000'
     networks:
       - db_network
     volumes:
@@ -91,7 +92,7 @@ services:
       - mariadb
       - wordpress
     env_file: .env_bonus
-    build: ../nginx
+    build: ./nginx
     volumes:
       - wp_volume:/var/www/html
     ports:

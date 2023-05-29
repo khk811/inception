@@ -5,13 +5,10 @@ RUN apt-get -y update && \
 						python3-pip \
 						mkdocs
 
-RUN mkdir -p /var/www/html && \
-	cd /var/www/html && \
-	mkdocs new inception && \
-	cd inception
+COPY --chmod=777 /tools/mkdocs_script.sh /tmp/mkdocs_script.sh
 
 RUN pip3 install mkdocs-material
 
-EXPOSE 4242
+EXPOSE 8000
 
-CMD ["mkdocs", "serve", "--dev-addr=0.0.0.0:4242"]
+CMD ["/bin/sh", "/tmp/mkdocs_script.sh"]
