@@ -2,6 +2,10 @@ upstream mkdocs-container {
 	server mkdocs:8000;
 }
 
+upstream static-web-container {
+	server static_web:8001;
+}
+
 server {
 	listen 443 ssl;
 	listen [::]:443 ssl;
@@ -31,5 +35,9 @@ server {
 
 	location /inception/ {
 		proxy_pass http://mkdocs-container/;
+	}
+
+	location /static-web/ {
+		proxy_pass http://static_web-container/;
 	}
 }

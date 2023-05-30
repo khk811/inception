@@ -1,0 +1,22 @@
+FROM debian:bullseye
+
+RUN apt-get -y update && \
+	apt-get -y install nginx \
+						curl \
+						sudo \
+						wget \
+						libnss3-tools
+
+# COPY ./tools/mkcert_scr  ipt.sh /tmp/mkcert_script.sh
+RUN mkdir -p /var/www/html && \
+	cp -R /tools/static-web /var/www/html/
+# COPY --chmod=777 ./tools/static_web_sciprt.sh /tmp/static_web_sciprt.sh
+COPY ./conf/default /etc/nginx/conf.d/default.conf
+
+WORKDIR /var/www/html/static-web
+
+EXPOSE 8001
+# EXPOSE 443/tcp
+
+CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
+

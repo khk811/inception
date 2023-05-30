@@ -82,6 +82,18 @@ services:
       - wp_volume:/var/www/html
     working_dir: /var/www/html/inception
 
+  static_web:
+    container_name: static_web
+    restart: always
+    build: ./static_web
+    expose:
+      - 8001
+    networks:
+      - db_network
+    volumes:
+      - wp_volume:/var/www/html
+    working_dir: /var/www/html/static-web
+
   nginx:
     container_name: nginx
     restart: always
@@ -97,7 +109,6 @@ services:
       - '443:443'
     networks:
       - db_network
-
 
 volumes:
   wp_volume:
