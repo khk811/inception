@@ -38,6 +38,6 @@ server {
 	}
 
 	location /static-web/ {
-		proxy_pass http://static_web-container/;
+		proxy_pass http://static-web-container/;
 	}
 }
