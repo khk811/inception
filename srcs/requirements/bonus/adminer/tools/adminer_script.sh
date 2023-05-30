@@ -10,4 +10,4 @@ else
 fi
 
 echo "[START PHP-FPM]\n";
-exec /usr/sbin/php-fpm7.4 -F
+exec /usr/sbin/php-fpm7.3 -F
