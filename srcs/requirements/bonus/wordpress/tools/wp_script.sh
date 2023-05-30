@@ -50,4 +50,4 @@ if [ ! -e /var/www/html/.wp_installed ]; then
 fi
 
 echo "[START PHP-FPM]\n";
-exec /usr/sbin/php-fpm7.3 -F
+exec /usr/sbin/php-fpm7.4 -F
