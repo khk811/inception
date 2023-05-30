@@ -3,7 +3,8 @@
 if [ ! -e /var/lib/mysql/.root_pw_reset ]; then
 	echo "===[INITIAL DB CONFIGURATION]===\n"
 	echo "[MARIADB START]\n"
-	service mariadb start 2> /dev/null
+	#service mariadb start 2> /dev/null
+	service mysql start 2> /dev/null
 
 	echo "[CHANGE WORKING DIR PREVILEGE]\n"
 	chmod -R 777 /var/lib/mysql

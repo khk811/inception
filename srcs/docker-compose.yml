@@ -49,16 +49,16 @@ volumes:
     driver_opts:
       o: bind
       type: none
-      device: /Users/hyunkkim/inception/volumes/wordpress
-      # device: /home/hyunkkim/data/wordpress
+        #device: /Users/hyunkkim/inception/volumes/wordpress
+      device: /home/hyunkkim/data/wordpress
 
   db_volume:
     driver: local
     driver_opts:
       o: bind
       type: none
-      device: /Users/hyunkkim/inception/volumes/mariadb
-      # device: /home/hyunkkim/data/mariadb
+        #device: /Users/hyunkkim/inception/volumes/mariadb
+      device: /home/hyunkkim/data/mariadb
 
 networks:
   db_network:

@@ -6,6 +6,7 @@ RUN apt-get -y update && \
 	apt-get -y install php-fpm \
 			php-mysql \
 			php-cli \
+			php-curl \
 			mariadb-client \
 			curl \
 			sudo
@@ -20,7 +21,7 @@ RUN chmod +x wp-cli.phar && \
 
 # copy script file (상대경로 기준은 dockerfile 기준)
 COPY --chmod=777 /tools/wp_script.sh /tmp/wp_script.sh
-COPY --chmod=777 /conf/www.conf /etc/php/7.4/fpm/pool.d/www.conf
+COPY --chmod=777 /conf/www.conf /etc/php/7.3/fpm/pool.d/www.conf
 
 # 9000 port 열기
 EXPOSE 9000
