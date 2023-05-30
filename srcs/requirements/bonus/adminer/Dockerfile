@@ -2,15 +2,17 @@
 FROM debian:buster
 
 RUN apt-get -y update && \
-	apt -y install lsb-release apt-transport-https ca-certificates && \
+	apt-get -y install lsb-release \
+			   wget \
+			   apt-transport-https \ 
+			   ca-certificates && \
 	wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg && \
-	echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/php.list
+	echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/php.list
 
 # install adminer
 RUN apt-get -y update && \
 	apt-get -y install php7.4-fpm \
-						php7.4-mysql \
-						wget
+				php7.4-mysql
 
 
 RUN mkdir -p /run/php
