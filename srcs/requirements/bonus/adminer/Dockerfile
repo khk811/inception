@@ -1,5 +1,5 @@
-# debian 11
-FROM debian:bullseye
+# debian 10
+FROM debian:buster
 
 # install adminer
 RUN apt-get -y update && \

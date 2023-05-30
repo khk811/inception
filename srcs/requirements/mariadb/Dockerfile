@@ -1,5 +1,5 @@
 # debian 기반
-FROM debian:bullseye
+FROM debian:buster
 
 # mariadb 설치
 RUN apt-get -y update && \
