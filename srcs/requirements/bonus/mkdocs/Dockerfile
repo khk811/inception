@@ -12,7 +12,7 @@ RUN apt-get -y update && \
 
 COPY --chmod=777 /tools/mkdocs_script.sh /tmp/mkdocs_script.sh
 # COPY ./tools/mkcert_script.sh /tmp/mkcert_script.sh
-COPY ./conf/default /etc/nginx/conf.d/default.conf
+COPY ./conf/default.conf /etc/nginx/conf.d/default.conf
 
 RUN pip3 install mkdocs-material
 

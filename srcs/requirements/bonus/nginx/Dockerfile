@@ -14,7 +14,7 @@ COPY ./tools/mkcert_script.sh /tmp/mkcert_script.sh
 RUN /bin/sh /tmp/mkcert_script.sh
 
 # Nginx 설정파일 복사
-COPY ./conf/default /etc/nginx/conf.d/default.conf
+COPY ./conf/default.conf /etc/nginx/conf.d/default.conf
 
 # 443 port 열기
 EXPOSE 443/tcp
