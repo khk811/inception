@@ -15,11 +15,16 @@ usermod -a -G www-data ${FTP_USER}
 echo "\n[CHECK USER GROUP]\n";
 groups ${FTP_USER}
 
-echo "\n[CHANGE DIR PREVILEGE]\n";
-mkdir -p /home/vsftpd && chown -R www-data:www-data /home/vsftpd
-chmod -R 776 /home/vsftpd
-
 ls -la /home/
+
+chmod -R 775 /home/vsftpd
+
+echo "\n[CREATE SECURE CHROOT PATH]\n";
+mkdir -p /var/run/vsftpd/empty
+
+echo "\n[ADD USER IN vsftpd USER LIST]\n";
+touch /etc/vsftpd.userlist
+echo ${FTP_USER} | tee -a /etc/vsftpd.userlist
 
 echo "\n[RUN vsftpd]\n";
 /usr/sbin/vsftpd /etc/vsftpd.conf

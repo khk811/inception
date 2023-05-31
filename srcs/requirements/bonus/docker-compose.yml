@@ -32,9 +32,13 @@ services:
     restart: always
     env_file: .env_bonus
     build: ./vsftpd
-    expose:
-      - 20
-      - 21
+      #    expose:
+      #      - 20
+      #      - 21
+    ports:
+      - '20:20'
+      - '21:21'
+      - '30001:30001'
     networks:
       - db_network
     volumes:
