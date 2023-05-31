@@ -51,6 +51,7 @@ services:
       - 8080
     networks:
       - db_network
+    working_dir: /data
 
   wordpress:
     container_name: wordpress
