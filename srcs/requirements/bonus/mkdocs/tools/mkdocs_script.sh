@@ -1,18 +1,19 @@
 #!/bin/sh
 
-cd ../
+cd /data
 
 pwd | xargs echo
 
 ls -la
 
-if [ ! -e /var/www/html/inception/mkdocs.yml ]; then
+if [ ! -e /data/inception/mkdocs.yml ]; then
+	echo "\n[CREATE NEW MKDOCS DIR]\n"
 	mkdocs new inception
 else
-	echo "/var/www/html/inception/"
+	echo "\n >> MKDOCS DIR ALREADY EXISTS \n";
 fi
 
-cd inception
+cd /data/inception
 
 mkdocs build
 

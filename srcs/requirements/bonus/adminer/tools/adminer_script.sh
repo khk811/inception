@@ -1,10 +1,10 @@
 #!/bin/sh
 
-if [ ! -e /var/www/html/adminer.php ]; then
+if [ ! -e /data/adminer.php ]; then
 	echo "[INSTALL ADMINER]\n";
-	wget "http://www.adminer.org/latest.php" -O /var/www/html/adminer.php && \
-	chown -R www-data:www-data /var/www/html/adminer.php && \
- 	chmod 755 /var/www/html/adminer.php
+	wget "http://www.adminer.org/latest.php" -O /data/adminer.php && \
+	chown -R www-data:www-data /data/adminer.php && \
+ 	chmod 755 /data/adminer.php
 else
 	echo ">> ADMINER ALREADY EXISTS\n";
 fi
