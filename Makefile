@@ -7,6 +7,7 @@ ALL_CONTAINER=docker ps -aq
 ALL_IMAGES=docker images -aq
 DB_DIR=/home/hyunkkim/data/mariadb
 WP_DIR=/home/hyunkkim/data/wordpress
+BONUS_VOL_DIR=/home/hyunkkim/data/bonus
 # DB_DIR=./volumes/mariadb
 # WP_DIR=./volumes/wordpress
 
@@ -37,7 +38,7 @@ ifneq ($(shell $(ALL_IMAGES) | wc -l ), 0)
 endif
 
 volume_clean:
-	@rm -rf $(wildcard $(DB_DIR)/*) $(wildcard $(WP_DIR)/*)
+	@rm -rf $(wildcard $(DB_DIR)/*) $(wildcard $(WP_DIR)/*) $(wildcard $(BONUS_VOL_DIR)/*)
 	@rm -rf $(addprefix $(DB_DIR), /.root_pw_reset) $(addprefix $(WP_DIR), /.wp_installed)
 	@echo "[ DATA VOLUMES DELETED ]"
 
