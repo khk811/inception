@@ -2,6 +2,7 @@
 
 if [ ! -e /data/adminer.php ]; then
 	echo "[INSTALL ADMINER]\n";
+	chown -R www-data:www-data /data
 	wget "http://www.adminer.org/latest.php" -O /data/adminer.php && \
 	chown -R www-data:www-data /data/adminer.php && \
  	chmod 755 /data/adminer.php
