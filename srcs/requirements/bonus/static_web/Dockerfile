@@ -7,14 +7,11 @@ RUN apt-get -y update && \
 						wget \
 						libnss3-tools
 
-RUN mkdir -p /var/www/html/
-
-COPY --chmod=777 ./tools/static-web/ /data/static-web
+COPY ./tools/static-web/ /tmp
 COPY ./conf/default.conf /etc/nginx/conf.d/default.conf
-
-# WORKDIR /data/static-web
 
 EXPOSE 8001
 
+# CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
 CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
 
