@@ -17,4 +17,4 @@ cd /data/inception
 
 mkdocs build
 
-/usr/sbin/nginx -g "daemon off;"
+exec /usr/sbin/nginx -g "daemon off;"

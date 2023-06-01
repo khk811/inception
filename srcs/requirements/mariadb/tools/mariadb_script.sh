@@ -35,4 +35,4 @@ else
 fi
 
 echo "[MYSQLD START]\n"
-mysqld --user=mysql
+exec mysqld --user=mysql

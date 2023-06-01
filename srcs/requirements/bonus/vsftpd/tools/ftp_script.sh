@@ -27,4 +27,4 @@ touch /etc/vsftpd.userlist
 echo ${FTP_USER} | tee -a /etc/vsftpd.userlist
 
 echo "\n[RUN vsftpd]\n";
-/usr/sbin/vsftpd /etc/vsftpd.conf
+exec /usr/sbin/vsftpd /etc/vsftpd.conf
