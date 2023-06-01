@@ -16,16 +16,16 @@ $(NAME) :
 	make up
 
 up:
-	docker compose -f $(SRC) up
+	exec docker compose -f $(SRC) up
 
 down:
-	docker compose -f $(SRC) down
+	exec docker compose -f $(SRC) down
 
 bonus_up:
-	docker compose -f $(BONUS) up
+	exec docker compose -f $(BONUS) up
 
 bonus_down:
-	docker compose -f $(BONUS) down
+	exec docker compose -f $(BONUS) down
 
 clean: volume_clean
 ifneq ($(shell $(ALL_CONTAINER) | wc -l ), 0)
