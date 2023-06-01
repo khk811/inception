@@ -9,4 +9,4 @@ else
 	echo "webpage already exists\n"
 fi
 
-exec /usr/sbin/nginx -g "daemon off"
+exec /usr/sbin/nginx -g "daemon off;"
