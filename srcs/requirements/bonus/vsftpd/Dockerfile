@@ -13,3 +13,5 @@ RUN touch /var/log/vsftpd.log
 EXPOSE 20 21 30001
 
 CMD ["/bin/sh", "/tmp/ftp_script.sh"]
+
+STOPSIGNAL SIGKILL
