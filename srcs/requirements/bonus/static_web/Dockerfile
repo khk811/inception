@@ -7,7 +7,7 @@ RUN apt-get -y update && \
 						wget \
 						libnss3-tools
 
-COPY ./tools/static-web/ /tmp
+COPY ./tools/static-web/ /tmp/static-web/
 COPY ./conf/default.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 8001
