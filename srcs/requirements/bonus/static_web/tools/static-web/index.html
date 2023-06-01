@@ -1,10 +1,22 @@
 <!DOCTYPE html>
-<head>
-
-</head>
-<body>
-	<h1>
-		Hello World!
-	</h1>
-</body>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="speech-synthesis-script.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+	<h1>INCEPTION : STATIC_WEB - TEXT TO SPEECH</h1>
+    <div class="container">
+      <div class="column">
+        <textarea id="userText" rows="20" cols="40"></textarea>
+        <div>
+          <input id = "speakButton" type="button" value="speak" onclick="speechSpeak()">
+          <input type="button" value="pause" onclick="speechPause()">
+          <input type="button" value="stop" onclick="speechCancel()">
+          <input type="button" value="clear" onclick="clearTextarea()">
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
