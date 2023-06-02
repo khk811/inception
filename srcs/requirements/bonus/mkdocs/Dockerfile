@@ -3,7 +3,7 @@ FROM debian:buster
 RUN apt-get -y update && \
 	apt-get -y install python3 \
 						python3-pip \
-						mkdocs \
+						mkdocs
 						# nginx \
 						# curl \
 						# sudo \
