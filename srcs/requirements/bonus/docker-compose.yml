@@ -51,6 +51,8 @@ services:
       - 8080
     networks:
       - db_network
+    volumes:
+      - bonus_volume:/data
     working_dir: /data
 
   wordpress:
@@ -68,24 +70,10 @@ services:
     networks:
       - db_network
 
-  # mkdocs:
-  #   container_name: mkdocs
-  #   restart: always
-  #   build: ./mkdocs
-  #   expose:
-  #     - 8000
-  #   networks:
-  #     - db_network
-  #   volumes:
-  #     - bonus_volume:/data
-  #   working_dir: /data/inception
-
   cadvisor:
     restart: always
     container_name: cadvisor
     build: ./cadvisor
-      #ports:
-      #  - "2000:2000"
     expose:
       - 2000
     networks:
@@ -130,7 +118,6 @@ volumes:
     driver_opts:
       o: bind
       type: none
-        #device: /Users/hyunkkim/inception/volumes/wordpress
       device: /home/hyunkkim/data/wordpress
 
   db_volume:
@@ -138,7 +125,6 @@ volumes:
     driver_opts:
       o: bind
       type: none
-        #device: /Users/hyunkkim/inception/volumes/mariadb
       device: /home/hyunkkim/data/mariadb
 
   bonus_volume:
@@ -146,7 +132,6 @@ volumes:
     driver_opts:
       o: bind
       type: none
-        #device: /Users/hyunkkim/inception/volumes/mariadb
       device: /home/hyunkkim/data/bonus
 
 networks:
