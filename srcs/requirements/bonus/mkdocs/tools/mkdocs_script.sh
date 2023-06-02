@@ -17,5 +17,5 @@ cd /data/inception
 
 mkdocs build
 
-exec mkdocs serve --dev-addr=0.0.0.0:8000
-# exec /usr/sbin/nginx -g "daemon off;"
+# exec mkdocs serve --dev-addr=0.0.0.0:8000
+exec /usr/sbin/nginx -g "daemon off;"

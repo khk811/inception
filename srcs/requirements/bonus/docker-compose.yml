@@ -68,17 +68,17 @@ services:
     networks:
       - db_network
 
-  mkdocs:
-    container_name: mkdocs
-    restart: always
-    build: ./mkdocs
-    expose:
-      - 8000
-    networks:
-      - db_network
-    volumes:
-      - bonus_volume:/data
-    working_dir: /data/inception
+  # mkdocs:
+  #   container_name: mkdocs
+  #   restart: always
+  #   build: ./mkdocs
+  #   expose:
+  #     - 8000
+  #   networks:
+  #     - db_network
+  #   volumes:
+  #     - bonus_volume:/data
+  #   working_dir: /data/inception
 
   cadvisor:
     restart: always
