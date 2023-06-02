@@ -84,6 +84,8 @@ services:
     restart: always
     container_name: cadvisor
     build: ./cadvisor
+      #ports:
+      #  - "2000:2000"
     expose:
       - 2000
     networks:
