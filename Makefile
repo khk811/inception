@@ -8,9 +8,6 @@ ALL_IMAGES=docker images -aq
 DB_DIR=/home/hyunkkim/data/mariadb
 WP_DIR=/home/hyunkkim/data/wordpress
 BONUS_VOL_DIR=/home/hyunkkim/data/bonus
-# DB_DIR=./volumes/mariadb
-# WP_DIR=./volumes/wordpress
-
 
 $(NAME) :
 	make up

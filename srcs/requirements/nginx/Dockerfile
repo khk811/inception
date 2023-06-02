@@ -9,7 +9,7 @@ RUN apt-get -y update && \
 		wget \
 		libnss3-tools
 
-# HTTPS 인증서 스크립티 복사 및 실행
+# HTTPS 인증서 스크립트 복사 및 실행
 COPY ./tools/mkcert_script.sh /tmp/mkcert_script.sh
 RUN /bin/sh /tmp/mkcert_script.sh
 

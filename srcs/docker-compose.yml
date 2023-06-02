@@ -49,7 +49,6 @@ volumes:
     driver_opts:
       o: bind
       type: none
-        #device: /Users/hyunkkim/inception/volumes/wordpress
       device: /home/hyunkkim/data/wordpress
 
   db_volume:
@@ -57,7 +56,6 @@ volumes:
     driver_opts:
       o: bind
       type: none
-        #device: /Users/hyunkkim/inception/volumes/mariadb
       device: /home/hyunkkim/data/mariadb
 
 networks:
