@@ -114,7 +114,7 @@ services:
     depends_on:
       - mariadb
       - wordpress
-      - mkdocs
+      - static-web
     env_file: .env_bonus
     build: ./nginx
     volumes:
