@@ -82,6 +82,7 @@ services:
 
   cadvisor:
     restart: always
+    container_name: cadvisor
     build: ./cadvisor
     expose:
       - 2000

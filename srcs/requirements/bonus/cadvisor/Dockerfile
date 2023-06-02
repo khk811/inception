@@ -8,4 +8,4 @@ RUN curl -L https://github.com/google/cadvisor/releases/download/v0.47.0/cadviso
 
 EXPOSE 2000
 
-CMD ["cadvisor" "-logtostderr" "--port=2000"]
+CMD ["cadvisor", "-logtostderr", "--port=2000"]
