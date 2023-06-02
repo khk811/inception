@@ -96,7 +96,7 @@ services:
       - "/sys:/sys:ro"
       - "/var/lib/docker/:/var/lib/docker:ro"
 
-  static_web:
+  static-web:
     container_name: static_web
     restart: always
     build: ./static_web
