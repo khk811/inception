@@ -80,6 +80,19 @@ services:
       - bonus_volume:/data
     working_dir: /data/inception
 
+  cadvisor:
+    restart: always
+    build: ./cadvisor
+    expose:
+      - 2000
+    networks:
+      - db_network
+    volumes:
+      - "/:/rootfs:ro"
+      - "/var/run:/var/run:ro"
+      - "/sys:/sys:ro"
+      - "/var/lib/docker/:/var/lib/docker:ro"
+
   static_web:
     container_name: static_web
     restart: always
