@@ -22,15 +22,6 @@ if [ ! -e /var/www/html/.wp_installed ]; then
 	wp config set WP_REDIS_HOST ${REDIS_HOST} && \
 	wp config set WP_REDIS_PORT ${REDIS_PORT}"
 
-#	echo "\n[FTP SERVER CONFIGURATION FOR WORDPRESS]\n";
-#	sudo -u www-data sh -c "
-#	wp config set FTP_USER ${FTP_USER} && \
-#	wp config set FTP_PASS ${FTP_PASS} && \
-#	wp config set FS_METHOD ${FS_METHOD} && \
-#	wp config set FTP_BASE ${FTP_BASE} && \
-#	wp config set FTP_HOST ${FTP_HOST} && \
-#	wp config set FTP_SSL ${FTP_SSL}"
-
 	echo "\n[INSTALL WORDPRESS]\n";
 	sudo -u www-data sh -c "
 	wp core install --skip-email \

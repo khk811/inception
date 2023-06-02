@@ -14,5 +14,4 @@ COPY ./conf/default.conf /etc/nginx/conf.d/default.conf
 EXPOSE 8001
 
 CMD ["/bin/bash", "/tmp/static_web_script.sh"]
-# CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
 
